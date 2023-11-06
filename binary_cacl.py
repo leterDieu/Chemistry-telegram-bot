@@ -26,10 +26,13 @@ def get_element(element_symbol: str) -> Tuple[bool, str]:
 
 
 def does_compound_exist(formula: str) -> Tuple[bool, str]:
-    hill_formula = str(pt.formula(formula).hill)
-    if hill_formula in compounds_list:
-        return True, hill_formula
-    return False, "Formula doesn't exist in the database."
+    try:
+        hill_formula = str(pt.formula(formula).hill)
+        if hill_formula in compounds_list:
+            return True, hill_formula
+        return False, "Formula doesn't exist in the database."
+    except Exception:
+        return False, "Formula doesn't exist in the database."
 
 
 def generate_mw_table(element_symbol: str, mass_percentage: float, limit1=60, limit2=60) -> List[dict]:
