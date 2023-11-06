@@ -75,9 +75,10 @@ while True:
             elif '/existence' in text_:
                 try:
                     check_response = does_compound_exist(text_.split()[1])
-                    if not check_response:
+                    if not check_response[0]:
                         bot.sendMessage(id_, text=check_response[1])
-                    bot.sendMessage(id_, text=f'True. Hill notation: {check_response[1]}.')
+                    else:
+                        bot.sendMessage(id_, text=f'True. Hill notation: {check_response[1]}.')
                 except Exception:
                     bot.sendMessage(id_, text='Incorrect input.')
 
